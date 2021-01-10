@@ -9,7 +9,7 @@ I also think that it can have some educative value for beginners who have just a
 ## how to install
 
 Navigate to your install directory and type :
-- git clone https://github.com/mulekick/bit-shift-arithmetic
+- git clone https://github.com/mulekick/bit-level-arithmetic-js.git
 
 ## how to run
 When in the directory, type :
