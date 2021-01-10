@@ -602,29 +602,29 @@ const
     add = (op1, op2) => [
         `ADDITION RESULTS RENDERING`,
         `native float 64 : ${ op1 } + ${ op2 } = ${ op1 + op2 }`,
-        `native float 32 : ${ Float32Array.of(op1)[0] } + ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(op1)[0] + Float32Array.of(op2)[0] }`,
-        `native float 16 : ${ Float16Array.of(op1)[0] } + ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(op1)[0] + Float16Array.of(op2)[0] }`
+        `native float 32 : ${ Float32Array.of(op1)[0] } + ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(Float32Array.of(op1)[0] + Float32Array.of(op2)[0])[0] }`,
+        `native float 16 : ${ Float16Array.of(op1)[0] } + ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(Float16Array.of(op1)[0] + Float16Array.of(op2)[0])[0] }`
     ],
     // ----------------------------------------------------
     sub = (op1, op2) => [
         `SUBTRACTION RESULTS RENDERING`,
         `native float 64 : ${ op1 } - ${ op2 } = ${ op1 - op2 }`,
-        `native float 32 : ${ Float32Array.of(op1)[0] } - ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(op1)[0] - Float32Array.of(op2)[0] }`,
-        `native float 16 : ${ Float16Array.of(op1)[0] } - ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(op1)[0] - Float16Array.of(op2)[0] }`
+        `native float 32 : ${ Float32Array.of(op1)[0] } - ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(Float32Array.of(op1)[0] - Float32Array.of(op2)[0])[0] }`,
+        `native float 16 : ${ Float16Array.of(op1)[0] } - ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(Float16Array.of(op1)[0] - Float16Array.of(op2)[0])[0] }`
     ],
     // ----------------------------------------------------
     mul = (op1, op2) => [
         `MULTIPLICATION RESULTS RENDERING`,
         `native float 64 : ${ op1 } * ${ op2 } = ${ op1 * op2 }`,
-        `native float 32 : ${ Float32Array.of(op1)[0] } * ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(op1)[0] * Float32Array.of(op2)[0] }`,
-        `native float 16 : ${ Float16Array.of(op1)[0] } * ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(op1)[0] * Float16Array.of(op2)[0] }`
+        `native float 32 : ${ Float32Array.of(op1)[0] } * ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(Float32Array.of(op1)[0] * Float32Array.of(op2)[0])[0] }`,
+        `native float 16 : ${ Float16Array.of(op1)[0] } * ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(Float16Array.of(op1)[0] * Float16Array.of(op2)[0])[0] }`
     ],
     // ----------------------------------------------------
     div = (op1, op2) => [
         `DIVISION RESULTS RENDERING`,
         `native float 64 : ${ op1 } / ${ op2 } = ${ op1 / op2 }`,
-        `native float 32 : ${ Float32Array.of(op1)[0] } / ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(op1)[0] / Float32Array.of(op2)[0] }`,
-        `native float 16 : ${ Float16Array.of(op1)[0] } / ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(op1)[0] / Float16Array.of(op2)[0] }`
+        `native float 32 : ${ Float32Array.of(op1)[0] } / ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(Float32Array.of(op1)[0] / Float32Array.of(op2)[0])[0] }`,
+        `native float 16 : ${ Float16Array.of(op1)[0] } / ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(Float16Array.of(op1)[0] / Float16Array.of(op2)[0])[0] }`
     ];
 
 module.exports = {
