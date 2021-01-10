@@ -10,6 +10,7 @@ I also think that it can have some educative value for beginners who have just a
 
 Navigate to your install directory and type :
 - git clone https://github.com/mulekick/bit-level-arithmetic-js.git
+- npm install
 
 ## how to run
 When in the directory, type :
