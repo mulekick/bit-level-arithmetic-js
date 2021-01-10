@@ -100,9 +100,9 @@ const
     // hexadecimal fillers per integer type (8, 16, 32 bits)
     [ HEX_FILLER_8, HEX_FILLER_16, HEX_FILLER_32 ] = [ `00`, `0000`, `00000000` ],
     // ----------------------------------------------------
-    // data types constants : allocated memory, min value, max value, binary filler, dataview, int get, int set, fixed point scale factor, float get, float set
+    // data types constants : allocated memory, min value, max value, binary filler, dataview, int get, int set, fixed point scale factor, float min value, float max value, float get, float set
     NUMBER_8_BITS  = {nbits: 8,  min: 0x81,       max: 0x7f,       f: BIN_FILLER_8,  h: HEX_FILLER_8,  getint: p.getInt8,  setint: p.setInt8,  sf: 4,  fmin: null,       fmax: null,       getfloat: () => null,   setfloat: () => null},
-    NUMBER_16_BITS = {nbits: 16, min: 0x8001,     max: 0x7fff,     f: BIN_FILLER_16, h: HEX_FILLER_16, getint: p.getInt16, setint: p.setInt16, sf: 8,  fmin: 0x400,      fmax: 0x7BFF,     getfloat: p.getFloat16, setfloat: p.setFloat16},
+    NUMBER_16_BITS = {nbits: 16, min: 0x8001,     max: 0x7fff,     f: BIN_FILLER_16, h: HEX_FILLER_16, getint: p.getInt16, setint: p.setInt16, sf: 8,  fmin: 0x0400,     fmax: 0x7BFF,     getfloat: p.getFloat16, setfloat: p.setFloat16},
     NUMBER_32_BITS = {nbits: 32, min: 0x80000001, max: 0x7fffffff, f: BIN_FILLER_32, h: HEX_FILLER_32, getint: p.getInt32, setint: p.setInt32, sf: 16, fmin: 0x00800000, fmax: 0x7f7fffff, getfloat: p.getFloat32, setfloat: p.setFloat32},
     // ----------------------------------------------------
     // float32 sign bit, mantissa bit width, mantissa bits mask, implicit bit mask, exponent bias (127), unbiased exponents for zero (0b00000000 biased) and infinity (0b11111111 biased)
