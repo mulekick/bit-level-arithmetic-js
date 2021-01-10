@@ -26,7 +26,7 @@ const
     //   addition :                 https://ryanstutorials.net/binary-tutorial/binary-arithmetic.php#:~:text=Binary%20Addition
     //   subtraction :              https://ryanstutorials.net/binary-tutorial/binary-arithmetic.php#:~:text=Binary%20Subtraction
     //   multiplication :           https://ryanstutorials.net/binary-tutorial/binary-arithmetic.php#:~:text=Binary%20Multiplication
-    //   euclidian division :       https://ryanstutorials.net/binary-tutorial/binary-arithmetic.php#:~:text=Binary%20Division
+    //   division :                 https://ryanstutorials.net/binary-tutorial/binary-arithmetic.php#:~:text=Binary%20Division
     // 2. fixed point arithmetic
     //   long division :            https://paulmason.me/blog/2018-06-20-a-simple-implementation-of-division-in-rust/
     //                              https://blog.veitheller.de/Fixed_Point_Division.html
@@ -235,7 +235,7 @@ const
         return res;
     },
     // ----------------------------------------------------
-    euclidDivideInteger = (a, b) => {
+    divideInteger = (a, b) => {
         // use bitwise operations
         // use two's complement
         const
@@ -332,7 +332,7 @@ const
             // init quotient as fixed-point
             quotient = 0;
 
-        // increment f by 1 in order to perform the first euclidian division, extract the integer part of fixed-point quotient and the first fixed-point remainder
+        // increment f by 1 in order to perform the first division, extract the integer part of fixed-point quotient and the first fixed-point remainder
         f++;
 
         // while (a !== 0 & f !== 0)
@@ -340,7 +340,7 @@ const
             const
                 // extract fractional bits
                 // init q and r
-                [ q, r ] = euclidDivideInteger(a, b);
+                [ q, r ] = divideInteger(a, b);
             // convert fractional bits to fixed-point, store in quotient
             // ZFLS q by f bits, add q to quotient
             quotient = addInteger(quotient, q << f);
@@ -640,7 +640,7 @@ module.exports = {
     NUMBER_8_BITS, NUMBER_16_BITS, NUMBER_32_BITS,
     // ----------------------------------------------------
     compareNatural, getMostSignificantBit,
-    addInteger, twosComplement, subtractInteger, multiplyInteger, euclidDivideInteger,
+    addInteger, twosComplement, subtractInteger, multiplyInteger, divideInteger,
     toFixedPoint, toRational, longDivideRational,
     addFloatingPoint, subtractFloatingPoint, multiplyFloatingPoint, longDivideFloatingPoint,
     dec2base, asciitbl, deepcopy,

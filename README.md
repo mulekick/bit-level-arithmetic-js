@@ -27,7 +27,7 @@ When in the directory, type :
 1. addition
 2. subtraction
 3. multiplication
-4. euclidian division (for integers)
+4. division (for integers, returns a signed quotient and a signed remainder)
 5. long division
 
 ## possible operands data types are

@@ -3,7 +3,7 @@
 const
     // ====================================================
     // Declarations
-    {chalk, table, DataViewAugmented, le, NUMBER_8_BITS, NUMBER_16_BITS, NUMBER_32_BITS, addInteger, subtractInteger, multiplyInteger, euclidDivideInteger, dec2base, asciitbl, deepcopy, output, add, sub, mul, div} = require(`./lib.js`),
+    {chalk, table, DataViewAugmented, le, NUMBER_8_BITS, NUMBER_16_BITS, NUMBER_32_BITS, addInteger, subtractInteger, multiplyInteger, divideInteger, dec2base, asciitbl, deepcopy, output, add, sub, mul, div} = require(`./lib.js`),
 
     // =========== FORMAT OPERATION RESULTS ===============
     // native 64 bit floating point result
@@ -183,7 +183,7 @@ try {
             a = getint.call(views[col], 0, le),
             b = getint.call(views[col], 4, le),
             // compute values
-            c = euclidDivideInteger(a, b);
+            c = divideInteger(a, b);
 
         // set quotient as int on dataview offset 8
         setint.call(views[col], 8, c[0], le);
