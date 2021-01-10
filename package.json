@@ -1,0 +1,22 @@
+{
+  "name": "bits-and-pieces",
+  "version": "1.0.0",
+  "description": "small programs designed to illustrate some general ES6, V8,node and CS fundamentals",
+  "scripts": {
+    "iar": "node integer-arithmetic.js",
+    "far": "node fixed-point-arithmetic.js",
+    "flr": "node floating-point-arithmetic.js"
+  },
+  "dependencies": {
+    "@petamoriken/float16": "^2.0.0",
+    "ascii-table": "^0.0.9",
+    "chalk": "^4.1.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">= 12.18.2",
+    "npm": ">= 6.14.8"
+  },
+  "author": "mulekick",
+  "license": "ISC"
+}
