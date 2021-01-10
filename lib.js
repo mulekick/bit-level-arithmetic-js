@@ -2,6 +2,7 @@
 /* eslint-disable object-property-newline */
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-param-reassign */
+/* eslint-disable no-bitwise */
 'use strict';
 
 const

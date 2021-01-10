@@ -183,6 +183,7 @@ try {
             b = getint.call(views[col], 4, le);
 
         // compute value, set as int on dataview offset 8
+        // eslint-disable-next-line no-bitwise
         setint.call(views[col], 8, multiplyInteger(a, b) >> sf, le);
 
         // fill array
