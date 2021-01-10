@@ -1,7 +1,7 @@
 {
   "name": "bits-and-pieces",
   "version": "1.0.0",
-  "description": "small programs designed to illustrate some general ES6, V8,node and CS fundamentals",
+  "description": "bit-level implementation of arithmetic operations in javascript",
   "scripts": {
     "iar": "node integer-arithmetic.js",
     "far": "node fixed-point-arithmetic.js",

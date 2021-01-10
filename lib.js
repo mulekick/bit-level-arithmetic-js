@@ -106,7 +106,7 @@ const
     // ----------------------------------------------------
     // float32 sign bit, mantissa bit width, mantissa bits mask, implicit bit mask, exponent bias (127), unbiased exponents for zero (0b00000000 biased) and infinity (0b11111111 biased)
     F32_CONSTANTS = {sbit: I32_MSB, mwidth: 23, mmask: 0x7FFFFF, imask: 0x800000, ebias: 0b01111111, ezero: 0b10000001, einfinity: 0b10000000},
-    // float16 sign bit, mantissa bit width, mantissa bits mask, implicit bit mask, exponent bias (127), unbiased exponents for zero (0b00000 biased) and infinity (0b11111 biased)
+    // float16 sign bit, mantissa bit width, mantissa bits mask, implicit bit mask, exponent bias (15), unbiased exponents for zero (0b00000 biased) and infinity (0b11111 biased)
     F16_CONSTANTS = {sbit: I16_MSB, mwidth: 10, mmask: 0x3FF,    imask: 0x400,    ebias: 0b01111,    ezero: 0b10001,    einfinity: 0b10000},
 
     // ================ BINARY PROCESSING =================
