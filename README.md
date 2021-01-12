@@ -6,6 +6,11 @@ The point in using a technology clearly unfit for such an exercise is that writi
 
 I also think that it can have some educative value for beginners who have just a bare node.js / express education as it will get them acquainted with bitwise operators, typed arrays, dataviews, arraybuffers and other low-level v8 concepts that may help them transition to some more low-level programming languages if they wish to.
 
+## prerequisites
+- nodes.js installed (version 12.18.2 recommended)
+- npm installed (version 6.14.8 recommended)
+- git installed (version 2.20.1 recommended)
+
 ## how to install
 
 Navigate to your install directory and type :

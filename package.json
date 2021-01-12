@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "bit-level implementation of arithmetic operations in javascript",
   "scripts": {
-    "iar": "node integer-arithmetic.js",
-    "far": "node fixed-point-arithmetic.js",
-    "flr": "node floating-point-arithmetic.js"
+    "iar": "node src/integer-arithmetic.js",
+    "far": "node src/fixed-point-arithmetic.js",
+    "flr": "node src/floating-point-arithmetic.js"
   },
   "dependencies": {
     "@petamoriken/float16": "^2.0.0",

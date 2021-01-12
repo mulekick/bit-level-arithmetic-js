@@ -100,15 +100,15 @@ const
     // hexadecimal fillers per integer type (8, 16, 32 bits)
     [ HEX_FILLER_8, HEX_FILLER_16, HEX_FILLER_32 ] = [ `00`, `0000`, `00000000` ],
     // ----------------------------------------------------
-    // data types constants : allocated memory, min value, max value, binary filler, dataview, int get, int set, fixed point scale factor, float min value, float max value, float get, float set
+    // data types constants : allocated memory, min value, max value, binary filler, hex filler, int get, int set, fixed point scale factor, float min value, float max value, float get, float set
     NUMBER_8_BITS  = {nbits: 8,  min: 0x81,       max: 0x7f,       f: BIN_FILLER_8,  h: HEX_FILLER_8,  getint: p.getInt8,  setint: p.setInt8,  sf: 4,  fmin: null,       fmax: null,       getfloat: () => null,   setfloat: () => null},
-    NUMBER_16_BITS = {nbits: 16, min: 0x8001,     max: 0x7fff,     f: BIN_FILLER_16, h: HEX_FILLER_16, getint: p.getInt16, setint: p.setInt16, sf: 8,  fmin: 0x0400,     fmax: 0x7BFF,     getfloat: p.getFloat16, setfloat: p.setFloat16},
+    NUMBER_16_BITS = {nbits: 16, min: 0x8001,     max: 0x7fff,     f: BIN_FILLER_16, h: HEX_FILLER_16, getint: p.getInt16, setint: p.setInt16, sf: 8,  fmin: 0x0400,     fmax: 0x7bff,     getfloat: p.getFloat16, setfloat: p.setFloat16},
     NUMBER_32_BITS = {nbits: 32, min: 0x80000001, max: 0x7fffffff, f: BIN_FILLER_32, h: HEX_FILLER_32, getint: p.getInt32, setint: p.setInt32, sf: 16, fmin: 0x00800000, fmax: 0x7f7fffff, getfloat: p.getFloat32, setfloat: p.setFloat32},
     // ----------------------------------------------------
     // float32 sign bit, mantissa bit width, mantissa bits mask, implicit bit mask, exponent bias (127), unbiased exponents for zero (0b00000000 biased) and infinity (0b11111111 biased)
-    F32_CONSTANTS = {sbit: I32_MSB, mwidth: 23, mmask: 0x7FFFFF, imask: 0x800000, ebias: 0b01111111, ezero: 0b10000001, einfinity: 0b10000000},
+    F32_CONSTANTS = {sbit: I32_MSB, mwidth: 23, mmask: 0x7fffff, imask: 0x800000, ebias: 0b01111111, ezero: 0b10000001, einfinity: 0b10000000},
     // float16 sign bit, mantissa bit width, mantissa bits mask, implicit bit mask, exponent bias (15), unbiased exponents for zero (0b00000 biased) and infinity (0b11111 biased)
-    F16_CONSTANTS = {sbit: I16_MSB, mwidth: 10, mmask: 0x3FF,    imask: 0x400,    ebias: 0b01111,    ezero: 0b10001,    einfinity: 0b10000},
+    F16_CONSTANTS = {sbit: I16_MSB, mwidth: 10, mmask: 0x3ff,    imask: 0x400,    ebias: 0b01111,    ezero: 0b10001,    einfinity: 0b10000},
 
     // ================ BINARY PROCESSING =================
     compareNatural = (a, b) => {
@@ -226,7 +226,7 @@ const
             if ((a & pos) !== 0)
                 // add val to res
                 res = addInteger(res, b);
-                // zero fill left shift b by 1 bit
+            // zero fill left shift b by 1 bit
             b <<= 1;
             // zero fill left shift pos by 1 bit
             pos <<= 1;
@@ -389,7 +389,6 @@ const
             // retrieve constants
             {sbit, mwidth, imask, ebias, ezero} = n === 16 ? F16_CONSTANTS : F32_CONSTANTS,
             // init sign from mantissa sign bit (since it the result of a bit shifting computation, sign will always be on bit 31)
-            // s = m & I32_MSB;
             s = (m & I32_MSB) === 0 ? 0 : sbit;
 
         // remove sign from mantissa (if sign bit of mantissa is 1, then mantissa = two's complement of mantissa)
@@ -509,7 +508,7 @@ const
         // remove excedent bias from res exponent
         er = subtractInteger(er, ebias);
 
-        // interpret a mantissa and b mantissa as 32 bit fixed point values with a 10 scale factor, perform multiplication
+        // interpret a mantissa and b mantissa as 32 bit fixed point values with a 23 scale factor, perform multiplication
 
         // res mantissa = multiplyInteger(a mantissa, b mantissa) / scale factor
         mr = multiplyInteger(ma, mb) >> mwidth;
@@ -534,7 +533,7 @@ const
         // subtract b exponent from a exponent
         er = subtractInteger(ea, eb);
 
-        // add missing bias from res exponent
+        // add missing bias to res exponent
         er = addInteger(er, ebias);
 
         // interpret a mantissa and b mantissa as 32 bit fixed point values with a 23 scale factor, perform long division
@@ -590,11 +589,17 @@ const
         process.stdout.write(chalk.black.bgBlue(`==== ${ title } ====`));
         process.stdout.write(`\n`);
         process.stdout.write(`\n`);
+        process.stdout.write(chalk.bgGreen.black(`native operators implementation results :`));
+        process.stdout.write(`\n`);
+        process.stdout.write(`\n`);
         process.stdout.write(chalk.red(`${ f64val }`));
         process.stdout.write(`\n`);
         process.stdout.write(chalk.red(`${ f32val }`));
         process.stdout.write(`\n`);
         process.stdout.write(chalk.red(`${ f16val }`));
+        process.stdout.write(`\n`);
+        process.stdout.write(`\n`);
+        process.stdout.write(chalk.bgGreen.black(`current operators implementation results :`));
         process.stdout.write(`\n`);
         process.stdout.write(chalk.red(results.toString()));
         process.stdout.write(`\n`);
@@ -602,30 +607,30 @@ const
     // ----------------------------------------------------
     add = (op1, op2) => [
         `ADDITION RESULTS RENDERING`,
-        `native float 64 : ${ op1 } + ${ op2 } = ${ op1 + op2 }`,
-        `native float 32 : ${ Float32Array.of(op1)[0] } + ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(Float32Array.of(op1)[0] + Float32Array.of(op2)[0])[0] }`,
-        `native float 16 : ${ Float16Array.of(op1)[0] } + ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(Float16Array.of(op1)[0] + Float16Array.of(op2)[0])[0] }`
+        `64 BIT FLOATING POINT : ${ op1 } + ${ op2 } = ${ op1 + op2 }`,
+        `32 BIT FLOATING POINT : ${ Float32Array.of(op1)[0] } + ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(Float32Array.of(op1)[0] + Float32Array.of(op2)[0])[0] }`,
+        `16 BIT FLOATING POINT : ${ Float16Array.of(op1)[0] } + ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(Float16Array.of(op1)[0] + Float16Array.of(op2)[0])[0] }`
     ],
     // ----------------------------------------------------
     sub = (op1, op2) => [
         `SUBTRACTION RESULTS RENDERING`,
-        `native float 64 : ${ op1 } - ${ op2 } = ${ op1 - op2 }`,
-        `native float 32 : ${ Float32Array.of(op1)[0] } - ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(Float32Array.of(op1)[0] - Float32Array.of(op2)[0])[0] }`,
-        `native float 16 : ${ Float16Array.of(op1)[0] } - ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(Float16Array.of(op1)[0] - Float16Array.of(op2)[0])[0] }`
+        `64 BIT FLOATING POINT : ${ op1 } - ${ op2 } = ${ op1 - op2 }`,
+        `32 BIT FLOATING POINT : ${ Float32Array.of(op1)[0] } - ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(Float32Array.of(op1)[0] - Float32Array.of(op2)[0])[0] }`,
+        `16 BIT FLOATING POINT : ${ Float16Array.of(op1)[0] } - ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(Float16Array.of(op1)[0] - Float16Array.of(op2)[0])[0] }`
     ],
     // ----------------------------------------------------
     mul = (op1, op2) => [
         `MULTIPLICATION RESULTS RENDERING`,
-        `native float 64 : ${ op1 } * ${ op2 } = ${ op1 * op2 }`,
-        `native float 32 : ${ Float32Array.of(op1)[0] } * ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(Float32Array.of(op1)[0] * Float32Array.of(op2)[0])[0] }`,
-        `native float 16 : ${ Float16Array.of(op1)[0] } * ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(Float16Array.of(op1)[0] * Float16Array.of(op2)[0])[0] }`
+        `64 BIT FLOATING POINT : ${ op1 } * ${ op2 } = ${ op1 * op2 }`,
+        `32 BIT FLOATING POINT : ${ Float32Array.of(op1)[0] } * ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(Float32Array.of(op1)[0] * Float32Array.of(op2)[0])[0] }`,
+        `16 BIT FLOATING POINT : ${ Float16Array.of(op1)[0] } * ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(Float16Array.of(op1)[0] * Float16Array.of(op2)[0])[0] }`
     ],
     // ----------------------------------------------------
     div = (op1, op2) => [
         `DIVISION RESULTS RENDERING`,
-        `native float 64 : ${ op1 } / ${ op2 } = ${ op1 / op2 }`,
-        `native float 32 : ${ Float32Array.of(op1)[0] } / ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(Float32Array.of(op1)[0] / Float32Array.of(op2)[0])[0] }`,
-        `native float 16 : ${ Float16Array.of(op1)[0] } / ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(Float16Array.of(op1)[0] / Float16Array.of(op2)[0])[0] }`
+        `64 BIT FLOATING POINT : ${ op1 } / ${ op2 } = ${ op1 / op2 }`,
+        `32 BIT FLOATING POINT : ${ Float32Array.of(op1)[0] } / ${ Float32Array.of(op2)[0] } = ${ Float32Array.of(Float32Array.of(op1)[0] / Float32Array.of(op2)[0])[0] }`,
+        `16 BIT FLOATING POINT : ${ Float16Array.of(op1)[0] } / ${ Float16Array.of(op2)[0] } = ${ Float16Array.of(Float16Array.of(op1)[0] / Float16Array.of(op2)[0])[0] }`
     ];
 
 module.exports = {

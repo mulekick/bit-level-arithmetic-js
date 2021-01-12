@@ -28,8 +28,8 @@ const
 
         // format output
         // ------------------------------------------------
-        a[row++][col] = `${ nbits } BITS, SCALE FACTOR ${ sf }`;
-        a[row++][col] = `FIXED POINT BINARY :`;
+        a[row++][col] = `${ nbits } BIT, SCALE FACTOR ${ sf }`;
+        a[row++][col] = `BINARY :`;
         a[row++][col] = `op1 : ${ dec2base(getint.call(view, 0, le), f, 2) }`;
         a[row++][col] = `op2 : ${ dec2base(getint.call(view, 4, le), f, 2) }`;
         a[row++][col] = `res : ${ dec2base(getint.call(view, 8, le), f, 2) }`;
@@ -92,7 +92,7 @@ try {
         setint.call(views[i], 4, max, le);
 
         tbl
-            .setHeading([ `${ nbits } BITS, SCALE FACTOR ${ sf }`, `BINARY`, `RATIONAL` ])
+            .setHeading([ `${ nbits } BIT, SCALE FACTOR ${ sf }`, `BINARY`, `RATIONAL` ])
             .addRowMatrix([
                 [ `min valid value`, dec2base(getint.call(views[i], 0, le), f, 2), toRational(getint.call(views[i], 0, le), sf) ],
                 [ `max valid value`, dec2base(getint.call(views[i], 4, le), f, 2), toRational(getint.call(views[i], 4, le), sf) ]

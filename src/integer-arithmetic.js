@@ -24,7 +24,7 @@ const
 
         // format output
         // ------------------------------------------------
-        a[row++][col] = `${ nbits } BITS`;
+        a[row++][col] = `${ nbits } BIT`;
         a[row++][col] = `BINARY :`;
         a[row++][col] = `op1 : ${ dec2base(getint.call(view, 0, le), f, 2) }`;
         a[row++][col] = `op2 : ${ dec2base(getint.call(view, 4, le), f, 2) }`;
@@ -88,7 +88,7 @@ try {
         setint.call(views[i], 4, max, le);
 
         tbl
-            .setHeading([ `${ nbits } BITS`, `BINARY`, `INTEGER` ])
+            .setHeading([ `${ nbits } BIT`, `BINARY`, `INTEGER` ])
             .addRowMatrix([
                 [ `min valid value`, dec2base(getint.call(views[i], 0, le), f, 2), getint.call(views[i], 0, le) ],
                 [ `max valid value`, dec2base(getint.call(views[i], 4, le), f, 2), getint.call(views[i], 4, le) ]
@@ -195,7 +195,7 @@ try {
             fits = parseInt(op1 / op2) === Float64Array.of(getint.call(views[col], 8, le))[0] && op1 % op2 === Float64Array.of(getint.call(views[col], 12, le))[0];
 
         // we won't be using result formatting function here since we need to display the quotient AND the remainder
-        arr[row++][col] = `${ nbits } BITS`;
+        arr[row++][col] = `${ nbits } BIT`;
         arr[row++][col] = `BINARY :`;
         arr[row++][col] = `op1 = ${ dec2base(a, f, 2) }`;
         arr[row++][col] = `op2 = ${ dec2base(b, f, 2) }`;
