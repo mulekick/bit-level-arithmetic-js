@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "debug integer-arithmetic",
             "skipFiles": [ "<node_internals>/**" ],
-            "program": "${workspaceFolder}/integer-arithmetic",
+            "program": "${workspaceFolder}/src/integer-arithmetic",
             "args": []
         },
         {
@@ -17,7 +17,7 @@
             "request": "launch",
             "name": "debug fixed-point-arithmetic",
             "skipFiles": [ "<node_internals>/**" ],
-            "program": "${workspaceFolder}/fixed-point-arithmetic",
+            "program": "${workspaceFolder}/src/fixed-point-arithmetic",
             "args": ["2", "2"]
         },
         {
@@ -25,7 +25,7 @@
             "request": "launch",
             "name": "debug floating-point-arithmetic",
             "skipFiles": [ "<node_internals>/**" ],
-            "program": "${workspaceFolder}/floating-point-arithmetic",
+            "program": "${workspaceFolder}/src/floating-point-arithmetic",
             "args": ["1", "1"]
         }
     ]
