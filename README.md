@@ -1,4 +1,4 @@
-# Bit-level implementation of arithmetic operations in Javascript
+# Bit-level implementation of arithmetic operators in Javascript
 
 I'm soon going to begin to learn C language and as a warmup, I tried to familiarize myself with a few core CS concepts that I know are widely used in C : data types, memory allocation, and bitwise operations. To achieve this, I did a bit-level implementation of the basic arithmetic operators for different numeric data types using what I know best : javascript and google v8 engine.
 

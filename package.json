@@ -1,7 +1,7 @@
 {
   "name": "bits-and-pieces",
   "version": "1.0.0",
-  "description": "bit-level implementation of arithmetic operations in javascript",
+  "description": "bit-level implementation of arithmetic operators in javascript",
   "scripts": {
     "iar": "node src/integer-arithmetic.js",
     "far": "node src/fixed-point-arithmetic.js",
