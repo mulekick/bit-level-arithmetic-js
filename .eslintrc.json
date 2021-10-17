@@ -4,11 +4,11 @@
         "node": true,
         "browser": true
     },
-    //Base configuration
+    // Base configuration
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": 11,
-        //Use CommonJS type modules (require)
+        // Use CommonJS type modules (require)
         "sourceType": "script",
         "ecmaFeatures": {
             "impliedStrict ": true
@@ -17,8 +17,16 @@
     "globals": {
         "app": "readonly"
     },
+    "plugins": [
+        // Lint scripts embedded in HTML pages
+        "html"
+    ],
+    "settings": {
+        // extensions of HTML files to be linted
+        "html/html-extensions": [".html"]
+    },
     "rules": {
-        //Enable additional rules
+        // Enable additional rules
         "indent": ["error", 4],
 
         "linebreak-style": ["error", "unix"],
@@ -28,7 +36,7 @@
         }],
         "semi": ["error", "always"],
         
-        //Override default options for rules from base configurations
+        // Override default options for rules from base configurations
 
         // --------- possible errors --------------
         "no-await-in-loop": ["error"],
@@ -274,7 +282,7 @@
             "after": false
         }],
         
-        //Disable rules from base configurations
+        // Disable rules from base configurations
 
         // --------- possible errors --------------
         "no-sparse-arrays": ["off"],
@@ -290,8 +298,8 @@
 
         // ------------ ECMAScript 6 --------------
     },
-    //Disable ESLint inline comments
+    // Disable ESLint inline comments
     "noInlineConfig": false,
-    //Don't look for ESLint files in parent folders
+    // Don't look for ESLint files in parent folders
     "root": true
 }
