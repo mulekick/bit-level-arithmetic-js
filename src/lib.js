@@ -342,7 +342,7 @@ const
             // ZFLS r by 1 bit, affect to a
             a = r << 1;
             // decrement f by 1
-            --f;
+            f = subtractInteger(f, 1);
         // end while
         }
 
