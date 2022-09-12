@@ -1,0 +1,22 @@
+{
+    "name": "bit-level-arithmetic-js",
+    "version": "1.1.0",
+    "description": "bit-level implementation of arithmetic operators in javascript",
+    "type": "module",
+    "scripts": {
+        "iar": "node src/integer-arithmetic.js",
+        "far": "node src/fixed-point-arithmetic.js",
+        "flr": "node src/floating-point-arithmetic.js"
+    },
+    "dependencies": {
+        "@petamoriken/float16": ">=3.6.6",
+        "ascii-table": ">=0.0.9",
+        "chalk": ">=5.0.1"
+    },
+    "engines": {
+        "node": ">=16.16.0",
+        "npm": ">=8.15.1"
+    },
+    "author": "mulekick <moolekick@gmail.com> (https://github.com/mulekick)",
+    "license": "MIT"
+}
